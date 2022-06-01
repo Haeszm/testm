@@ -1,0 +1,138 @@
+{
+    "name": "Source Lura Music",
+    "description": "Telegram Group Calls streaming bot with some useful features, written in Python with Pyrogram and Py-Tgcalls. Supporting platforms like Youtube, Spotify, Resso, AppleMusic, Soundcloud and M3u8 Links.",
+    "logo": "https://telegra.ph/file/02ff5eed4dc2a34cbc1f7.jpg",
+    "keywords": [
+    "python3",
+    "telegram",
+    "bot",
+    "Yukki",
+    "YukkiMusicBot",
+    "telegram-bot",
+    "pyrogram"
+    ],
+    "stack": "container",
+    "env": {
+      "API_ID": {
+        "description": "هتستخرجو من هنا https://my.telegram.org",
+        "value": "",
+        "required": true
+      },
+      "API_HASH": {
+        "description": "هتستخرجو من هنا https://my.telegram.org",
+        "value": "",
+        "required": true
+      },
+      "OWNER": {
+        "description": "ضع هنا يوزر المطور",
+        "value": "FB_BI",
+        "required": true
+      },
+      "AUTO_LEAVING_ASSISTANT": {
+        "description": "سيبها زي مهيا",
+        "value": "True",
+        "required": true
+      },
+      "BOT_TOKEN": {
+        "description": "ضع هنا توكن البوت",
+        "value": "",
+        "required": true
+      },
+      "MONGO_DB_URI": {
+        "description": "هتستخرج كود المونجو من هنا https://cloud.mongodb.com",
+        "value": "",
+        "required": false
+      }, 
+      "BOTID": {
+        "description": "حط ايدي المطور بس يكسمك",
+        "value": "",
+        "required": false
+      },
+      "NAME_BOT": {
+        "description": "حط اسم البوت سواء عربي او انجليزي",
+        "value": "",
+        "required": false
+      },
+      "ID_BOT1": {
+
+        "description": "حط ايدي البوت بس يكسمك",
+
+        "value": "",
+
+        "required": false
+
+      },
+      "MUSIC_BOT_NAME": {
+        "description": "ضع هنا اسم البوت بدون زخرفه مثل { LURA }",
+        "value": "",
+        "required": true
+      },
+      "START_IMG_URL": {
+
+        "description": "دي ثابته",
+
+        "value": "https://telegra.ph/file/87b671ad585d0ea88436b.jpg",
+
+        "required": true
+
+      },
+      "BOT_USERNAME": {
+        "description": "ضع هنا يوزر البوت  مثل { LURA_MUSICBOT }",
+        "value": "LURA_MUSICBOT",
+        "required": true
+      },
+      "OWNER_ID": {
+        "description": "ضع هنا ايدي مطور البوت",
+        "value": "",
+        "required": true
+      },
+      "STRING_SESSION": {
+        "description": "ضع هنا جلسة البايوجرام",
+        "value": "",
+        "required": true
+      },
+      "HEROKU_API_KEY": {
+        "description": "ضع هنا اي بي كي الخاص بحساب الهيروكو بتاعك",
+        "value": "",
+        "required": false
+      },
+      "HEROKU_APP_NAME": {
+        "description": "ضع هنا اول اسم كتبتو ف ال app name",
+        "value": "",
+        "required": false
+      },
+      "LOG_GROUP_ID": {
+        "description": "ضع هنا ايدي الجروب الخاص ب اعدادات البوت",
+        "value": "",
+        "required": true
+      },
+      "UPSTREAM_REPO": {
+        "description": "ضع هنا رابط جيت هاب السورس",
+        "value": "https://github.com/GG-TT/allura",
+        "required": true
+      },
+      "UPSTREAM_BRANCH": {
+        "description": "سيبها زي مهيا",
+        "value": "master",
+        "required": true
+      }
+    },
+    "buildpacks": [
+          {
+              "url": "heroku/python"
+          },
+          {
+              "url": "heroku/nodejs"
+          },
+          {
+              "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git"
+          }
+      ],
+      "formation": {
+          "worker": {
+              "quantity": 1,
+              "size": "free"
+          }
+      },
+      "stack": "container"
+  }
