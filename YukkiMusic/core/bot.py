@@ -37,13 +37,13 @@ class YukkiBot(Client):
             )
         except:
             LOGGER(__name__).error(
-                "فشل Bot في الوصول إلى مجموعة السجلات. تأكد من إضافة برنامج الروبوت الخاص بك إلى قناة السجل الخاصة بك والترويج له كمسؤول!"
+                "Bot has failed to access the log Group. Make sure that you have added your bot to your log channel and promoted as admin!"
             )
             sys.exit()
         a = await self.get_chat_member(config.LOG_GROUP_ID, self.id)
         if a.status != "administrator":
             LOGGER(__name__).error(
-                " يرجى ترقيه  البوت كمسؤول في المجموعه "
+                "Please promote Bot as Admin in Logger Group"
             )
             sys.exit()
         if get_me.last_name:
