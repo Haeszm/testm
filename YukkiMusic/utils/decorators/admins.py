@@ -27,7 +27,7 @@ def AdminRightsCheck(mystic):
         if await is_maintenance() is False:
             if message.from_user.id not in SUDOERS:
                 return await message.reply_text(
-                    "Bot is under maintenance. Please wait for some time..."
+                    "بوت تحت الصيانة. يرجى الانتظار لبعض الوقت..."
                 )
         if await is_commanddelete_on(message.chat.id):
             try:
@@ -53,7 +53,7 @@ def AdminRightsCheck(mystic):
             return await message.reply_text(
                 _["general_4"], reply_markup=upl
             )
-        if message.command[0][0] == "c" or message.command[0][0] == "ق":
+        if message.command[0][0] == "c":
             chat_id = await get_cmode(message.chat.id)
             if chat_id is None:
                 return await message.reply_text(_["setting_12"])
@@ -84,7 +84,7 @@ def AdminActual(mystic):
         if await is_maintenance() is False:
             if message.from_user.id not in SUDOERS:
                 return await message.reply_text(
-                    "Bot is under maintenance. Please wait for some time..."
+                    "بوت تحت الصيانة. يرجى الانتظار لبعض الوقت..."
                 )
         if await is_commanddelete_on(message.chat.id):
             try:
@@ -129,7 +129,7 @@ def ActualAdminCB(mystic):
         if await is_maintenance() is False:
             if CallbackQuery.from_user.id not in SUDOERS:
                 return await CallbackQuery.answer(
-                    "Bot is under maintenance. Please wait for some time...",
+                    "بوت تحت الصيانة. يرجى الانتظار لبعض الوقت...",
                     show_alert=True,
                 )
         try:

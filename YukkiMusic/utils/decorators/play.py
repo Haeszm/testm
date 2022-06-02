@@ -27,12 +27,12 @@ def PlayWrapper(command):
         if await is_maintenance() is False:
             if message.from_user.id not in SUDOERS:
                 return await message.reply_text(
-                    "Bot is under maintenance. Please wait for some time..."
+                    "بوت تحت الصيانة. يرجى الانتظار لبعض الوقت..."
                 )
         if PRIVATE_BOT_MODE == str(True):
             if not await is_served_private_chat(message.chat.id):
                 await message.reply_text(
-                    "**Private Music Bot**\n\nOnly for authorized chats from the owner. Ask my owner to allow your chat first."
+                    "**بوت موسيقى خاص**\n\nفقط للدردشات المصرح بها من المالك. اطلب من مالك حسابي السماح بالدردشة أولا."
                 )
                 return await app.leave_chat(message.chat.id)
         if await is_commanddelete_on(message.chat.id):
@@ -87,7 +87,7 @@ def PlayWrapper(command):
             return await message.reply_text(
                 _["general_4"], reply_markup=upl
             )
-        if message.command[0][0] == "c" or message.command[0][0] == "ق":
+        if message.command[0][0] == "c":
             chat_id = await get_cmode(message.chat.id)
             if chat_id is None:
                 return await message.reply_text(_["setting_12"])
@@ -109,7 +109,7 @@ def PlayWrapper(command):
                 else:
                     if message.from_user.id not in admins:
                         return await message.reply_text(_["play_4"])
-        if message.command[0][0] == "v" or message.command[0][0] == "ف":
+        if message.command[0][0] == "v":
             video = True
         else:
             if "-v" in message.text:
