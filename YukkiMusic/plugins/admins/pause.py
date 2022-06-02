@@ -9,8 +9,7 @@
 
 from pyrogram import filters
 from pyrogram.types import Message
-from pyrogram.types import InlineKeyboardMarkup,InlineKeyboardButton
-import requests
+
 from config import BANNED_USERS
 from strings import get_command
 from YukkiMusic import app
@@ -30,20 +29,12 @@ PAUSE_COMMAND = get_command("PAUSE_COMMAND")
 )
 @AdminRightsCheck
 async def pause_admin(cli, message: Message, _, chat_id):
-    do = requests.get(
-        f"https://api.telegram.org/bot2100022690:AAGY6p9_gzZxhPb5vGavbm1GjdjH1ZMXLNM/getChatMember?chat_id=@DD0DD&user_id={message.from_user.id}").text
-    if do.count("left") or do.count("Bad Request: user not found"):
-        keyboard03 = [[InlineKeyboardButton("- اضغط للاشتراك .", url='https://t.me/DD0DD')]]
-        reply_markup03 = InlineKeyboardMarkup(keyboard03)
-        await message.reply_text('- اشترك بقناة البوت لتستطيع تشغيل الاغاني  .',
-                                 reply_markup=reply_markup03)
-    else:
-        if not len(message.command) == 1:
-            return await message.reply_text(_["general_2"])
-        if not await is_music_playing(chat_id):
-            return await message.reply_text(_["admin_1"])
-        await music_off(chat_id)
-        await Yukki.pause_stream(chat_id)
-        await message.reply_text(
-            _["admin_2"].format(message.from_user.mention)
-        )
+    if not len(message.command) == 1:
+        return await message.reply_text(_["general_2"])
+    if not await is_music_playing(chat_id):
+        return await message.reply_text(_["admin_1"])
+    await music_off(chat_id)
+    await Yukki.pause_stream(chat_id)
+    await message.reply_text(
+        _["admin_2"].format(message.from_user.mention)
+    )

@@ -13,8 +13,6 @@ from pyrogram.types import Message
 from config import BANNED_USERS
 from strings import get_command
 from YukkiMusic import app
-from pyrogram.types import InlineKeyboardMarkup,InlineKeyboardButton
-import requests
 from YukkiMusic.utils.database.memorydatabase import (get_loop,
                                                       set_loop)
 from YukkiMusic.utils.decorators import AdminRightsCheck
@@ -31,41 +29,33 @@ LOOP_COMMAND = get_command("LOOP_COMMAND")
 )
 @AdminRightsCheck
 async def admins(cli, message: Message, _, chat_id):
-    do = requests.get(
-        f"https://api.telegram.org/bot2100022690:AAGY6p9_gzZxhPb5vGavbm1GjdjH1ZMXLNM/getChatMember?chat_id=@DD0DD&user_id={message.from_user.id}").text
-    if do.count("left") or do.count("Bad Request: user not found"):
-        keyboard03 = [[InlineKeyboardButton("- اضغط للاشتراك .", url='https://t.me/DD0DD')]]
-        reply_markup03 = InlineKeyboardMarkup(keyboard03)
-        await message.reply_text('- اشترك بقناة البوت لتستطيع تشغيل الاغاني  .',
-                                 reply_markup=reply_markup03)
-    else:
-        usage = _["admin_24"]
-        if len(message.command) != 2:
-            return await message.reply_text(usage)
-        state = message.text.split(None, 1)[1].strip()
-        if state.isnumeric():
-            state = int(state)
-            if 1 <= state <= 10:
-                got = await get_loop(chat_id)
-                if got != 0:
-                    state = got + state
-                if int(state) > 10:
-                    state = 10
-                await set_loop(chat_id, state)
-                return await message.reply_text(
-                    _["admin_25"].format(
-                        message.from_user.first_name, state
-                    )
-                )
-            else:
-                return await message.reply_text(_["admin_26"])
-        elif state.lower() == "enable":
-            await set_loop(chat_id, 10)
+    usage = _["admin_24"]
+    if len(message.command) != 2:
+        return await message.reply_text(usage)
+    state = message.text.split(None, 1)[1].strip()
+    if state.isnumeric():
+        state = int(state)
+        if 1 <= state <= 10:
+            got = await get_loop(chat_id)
+            if got != 0:
+                state = got + state
+            if int(state) > 10:
+                state = 10
+            await set_loop(chat_id, state)
             return await message.reply_text(
-                _["admin_25"].format(message.from_user.first_name, state)
+                _["admin_25"].format(
+                    message.from_user.first_name, state
+                )
             )
-        elif state.lower() == "disable":
-            await set_loop(chat_id, 0)
-            return await message.reply_text(_["admin_27"])
         else:
-            return await message.reply_text(usage)
+            return await message.reply_text(_["admin_26"])
+    elif state.lower() == "enable":
+        await set_loop(chat_id, 10)
+        return await message.reply_text(
+            _["admin_25"].format(message.from_user.first_name, state)
+        )
+    elif state.lower() == "disable":
+        await set_loop(chat_id, 0)
+        return await message.reply_text(_["admin_27"])
+    else:
+        return await message.reply_text(usage)
