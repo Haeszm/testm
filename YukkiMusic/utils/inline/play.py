@@ -6,17 +6,10 @@
 # Please see < https://github.com/TeamYukki/YukkiMusicBot/blob/master/LICENSE >
 #
 # All rights reserved.
-from pyrogram import filters
-from pyrogram.types import Message
-from config import BANNED_USERS
-from strings import get_command
-from YukkiMusic import app
-from YukkiMusic.utils.database import is_music_playing, music_off
-from YukkiMusic.utils.decorators import AdminRightsCheck
-from strings import get_command
+
 from pyrogram.types import InlineKeyboardButton
-from pyrogram.types import (InlineKeyboardButton,CallbackQuery,
-                            InlineKeyboardMarkup, Message)
+
+
 def track_markup(_, videoid, user_id, channel, fplay):
     buttons = [
         [
@@ -27,15 +20,6 @@ def track_markup(_, videoid, user_id, channel, fplay):
             InlineKeyboardButton(
                 text=_["P_B_2"],
                 callback_data=f"MusicStream {videoid}|{user_id}|v|{channel}|{fplay}",
-            ),
-        
-        ],
-        [
-            InlineKeyboardButton(
-                text=_["PL_B_12"], url=f"https://t.me/so_alfaa"
-            ),
-            InlineKeyboardButton(
-                text=_["PL_B_13"], url=f"https://t.me/LURA205"
             ),
         ],
         [
@@ -57,14 +41,6 @@ def stream_markup(_, videoid):
             ),
             InlineKeyboardButton(
                 text=_["PL_B_3"], switch_inline_query_current_chat=""
-            ),
-        ],
-        [
-            InlineKeyboardButton(
-                text=_["PL_B_12"], url=f"https://t.me/so_alfaa"
-            ),
-            InlineKeyboardButton(
-                text=_["PL_B_13"], url=f"https://t.me/LURA205"
             ),
         ],
         [
@@ -159,4 +135,3 @@ def slider_markup(
         ],
     ]
     return buttons
-
