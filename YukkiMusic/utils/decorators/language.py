@@ -19,7 +19,7 @@ def language(mystic):
         if await is_maintenance() is False:
             if message.from_user.id not in SUDOERS:
                 return await message.reply_text(
-                    "بوت تحت الصيانة. يرجى الانتظار لبعض الوقت..."
+                    "Bot is under maintenance. Please wait for some time..."
                 )
         if await is_commanddelete_on(message.chat.id):
             try:
@@ -41,7 +41,7 @@ def languageCB(mystic):
         if await is_maintenance() is False:
             if CallbackQuery.from_user.id not in SUDOERS:
                 return await CallbackQuery.answer(
-                    "بوت تحت الصيانة. يرجى الانتظار لبعض الوقت...",
+                    "Bot is under maintenance. Please wait for some time...",
                     show_alert=True,
                 )
         try:
