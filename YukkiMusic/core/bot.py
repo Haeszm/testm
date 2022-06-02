@@ -1,4 +1,11 @@
-
+#
+# Copyright (C) 2021-2022 by TeamYukki@Github, < https://github.com/TeamYukki >.
+#
+# This file is part of < https://github.com/TeamYukki/YukkiMusicBot > project,
+# and is released under the "GNU v3.0 License Agreement".
+# Please see < https://github.com/TeamYukki/YukkiMusicBot/blob/master/LICENSE >
+#
+# All rights reserved.
 
 import sys
 
@@ -30,13 +37,13 @@ class YukkiBot(Client):
             )
         except:
             LOGGER(__name__).error(
-                "Bot has failed to access the log Group. Make sure that you have added your bot to your log channel and promoted as admin!"
+                "فشل Bot في الوصول إلى مجموعة السجلات. تأكد من إضافة برنامج الروبوت الخاص بك إلى قناة السجل الخاصة بك والترويج له كمسؤول!"
             )
             sys.exit()
         a = await self.get_chat_member(config.LOG_GROUP_ID, self.id)
         if a.status != "administrator":
             LOGGER(__name__).error(
-                "Please promote Bot as Admin in Logger Group"
+                " يرجى ترقيه  البوت كمسؤول في المجموعه "
             )
             sys.exit()
         if get_me.last_name:
