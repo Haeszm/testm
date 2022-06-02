@@ -1,16 +1,38 @@
-#
-# Copyright (C) 2021-2022 by TeamYukki@Github, < https://github.com/TeamYukki >.
-#
-# This file is part of < https://github.com/TeamYukki/YukkiMusicBot > project,
-# and is released under the "GNU v3.0 License Agreement".
-# Please see < https://github.com/TeamYukki/YukkiMusicBot/blob/master/LICENSE >
-#
-# All rights reserved.
+from PrimeMusic.core.bot import PrimeBot
+from PrimeMusic.core.dir import dirr
+from PrimeMusic.core.git import git
+from PrimeMusic.core.userbot import Userbot
+from PrimeMusic.misc import dbb, heroku, sudo
 
-from .channelplay import *
-from .database import *
-from .decorators import *
-from .formatters import *
-from .inline import *
-from .pastebin import *
-from .sys import *
+from .logging import LOGGER
+
+# Directories
+dirr()
+
+# Check Git Updates
+git()
+
+# Initialize Memory DB
+dbb()
+
+# Heroku APP
+heroku()
+
+# Load Sudo Users from DB
+sudo()
+
+# Bot Client
+app = PrimeBot()
+
+# Assistant Client
+userbot = Userbot()
+
+from .platforms import *
+
+YouTube = YouTubeAPI()
+Carbon = CarbonAPI()
+Spotify = SpotifyAPI()
+Apple = AppleAPI()
+Resso = RessoAPI()
+SoundCloud = SoundAPI()
+Telegram = TeleAPI()
