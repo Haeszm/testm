@@ -1,13 +1,19 @@
+#
+# Copyright (C) 2021-2022 by TeamYukki@Github, < https://github.com/TeamYukki >.
+#
+# This file is part of < https://github.com/TeamYukki/YukkiMusicBot > project,
+# and is released under the "GNU v3.0 License Agreement".
+# Please see < https://github.com/TeamYukki/YukkiMusicBot/blob/master/LICENSE >
+#
+# All rights reserved.
 
-
-import asyncio
 import os
 import time
+import asyncio
 from datetime import datetime, timedelta
 from typing import Union
 
-from pyrogram.types import (InlineKeyboardButton,
-                            InlineKeyboardMarkup, Voice)
+from pyrogram.types import Voice, InlineKeyboardButton, InlineKeyboardMarkup
 
 import config
 from config import MUSIC_BOT_NAME, lyrical
@@ -17,7 +23,6 @@ from ..utils.formatters import (convert_bytes, get_readable_time,
                                 seconds_to_min)
 
 downloader = {}
-
 
 class TeleAPI:
     def __init__(self):
@@ -111,22 +116,14 @@ class TeleAPI:
             return True
 
         async def down_load():
+
             async def progress(current, total):
                 if current == total:
                     return
                 current_time = time.time()
                 start_time = speed_counter.get(message.message_id)
                 check_time = current_time - start_time
-                upl = InlineKeyboardMarkup(
-                    [
-                        [
-                            InlineKeyboardButton(
-                                text="🚦 Cancel Downloading",
-                                callback_data="stop_downloading",
-                            ),
-                        ]
-                    ]
-                )
+                upl = InlineKeyboardMarkup([[InlineKeyboardButton(text="🚦 Cancel Downloading", callback_data="stop_downloading"),]])
                 if datetime.now() > left_time.get(message.message_id):
                     percentage = current * 100 / total
                     percentage = str(round(percentage, 2))
@@ -155,7 +152,7 @@ class TeleAPI:
                     left_time[
                         message.message_id
                     ] = datetime.now() + timedelta(seconds=self.sleep)
-
+        
             speed_counter[message.message_id] = time.time()
             left_time[message.message_id] = datetime.now()
 
@@ -165,9 +162,7 @@ class TeleAPI:
                     file_name=fname,
                     progress=progress,
                 )
-                await mystic.edit_text(
-                    "Successfully Downloaded.. Processing file now"
-                )
+                await mystic.edit_text("Successfully Downloaded.. Processing file now")
                 downloader.pop(message.message_id)
             except:
                 await mystic.edit_text(_["tg_2"])
