@@ -66,16 +66,16 @@ async def init():
         )
     except NoActiveGroupCall:
         LOGGER("YukkiMusic").error(
-            "[ERROR] - \n\nيرجى تشغيل المكالمة الصوتية لمجموعة Logger Group. تأكد من عدم إغلاق / إنهاء المكالمة الصوتية في مجموعة السجل الخاصة بك"
+            "[ERROR] - \n\nPlease turn on your Logger Group's Voice Call. Make sure you never close/end voice call in your log group"
         )
         sys.exit()
     except:
         pass
     await Yukki.decorators()
-    LOGGER("YukkiMusic").info("بدأ Yukki Music Bot بنجاح")
+    LOGGER("YukkiMusic").info("Yukki Music Bot Started Successfully")
     await idle()
 
 
 if __name__ == "__main__":
     loop.run_until_complete(init())
-    LOGGER("YukkiMusic").info("إيقاف يوكي الموسيقى بعقب! وداعا")
+    LOGGER("YukkiMusic").info("Stopping Yukki Music Bot! GoodBye")
